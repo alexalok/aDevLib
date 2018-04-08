@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace aDevLibStandard.Extensions.CollectionsExtensions
+namespace aDevLib.Extensions.CollectionsExtensions
 {
     public static class EnumerableExtensions
     {

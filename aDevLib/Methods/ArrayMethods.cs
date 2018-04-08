@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace aDevLibStandard.Methods
+namespace aDevLib.Methods
 {
     public class ArrayMethods
     {

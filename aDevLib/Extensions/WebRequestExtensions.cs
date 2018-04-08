@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class WebRequestExtensions
     {

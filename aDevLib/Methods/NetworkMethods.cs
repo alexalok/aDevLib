@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
-namespace aDevLibStandard.Methods
+namespace aDevLib.Methods
 {
     public class NetworkMethods
     {

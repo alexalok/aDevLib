@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class TaskExtensions
     {

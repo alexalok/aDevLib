@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace aDevLibStandard.Extensions.SerializationExtensions
+namespace aDevLib.Extensions.SerializationExtensions
 {
     public static class BinarySerializationExtensions
     {

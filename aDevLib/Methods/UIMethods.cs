@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace aDevLibStandard.Methods
+namespace aDevLib.Methods
 {
     public class UIMethods
     {

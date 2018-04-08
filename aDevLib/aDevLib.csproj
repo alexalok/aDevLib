@@ -9,10 +9,11 @@
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-	<ProjectReference Include="..\..\VMDetect\TTC.Utils.Environment\TTC.Utils.Environment.csproj">
-      <Project>{B32041A6-563B-46A3-89D3-343C39849B7E}</Project>
-      <Name>TTC.Utils.Environment</Name>
-    </ProjectReference>
+    <Reference Include="System.Net.Http" />
+	  <ProjectReference Include="..\..\VMDetect\TTC.Utils.Environment\TTC.Utils.Environment.csproj">
+        <Project>{B32041A6-563B-46A3-89D3-343C39849B7E}</Project>
+        <Name>TTC.Utils.Environment</Name>
+      </ProjectReference>
   </ItemGroup>
   
   <ItemGroup>

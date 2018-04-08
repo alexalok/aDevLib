@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace aDevLibStandard.Extensions.HtppExtentions
+namespace aDevLib.Extensions.HtppExtentions
 {
     public static class HttpClientExtensions
     {

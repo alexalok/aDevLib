@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace aDevLibStandard
+namespace aDevLib
 {
     public static class SRandom
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class DirectoryInfoExtensions
     {

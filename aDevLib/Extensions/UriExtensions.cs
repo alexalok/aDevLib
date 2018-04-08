@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class UriExtensions
     {

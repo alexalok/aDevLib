@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class EnumExtensions
     {

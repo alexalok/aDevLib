@@ -1,4 +1,4 @@
-﻿namespace aDevLibStandard.Extensions.CollectionsExtensions
+﻿namespace aDevLib.Extensions.CollectionsExtensions
 {
     public static class ArrayExtensions
     {

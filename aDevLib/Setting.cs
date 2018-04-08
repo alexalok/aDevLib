@@ -1,7 +1,7 @@
 ﻿using System;
-using aDevLibStandard.Extensions.CollectionsExtensions;
+using aDevLib.Extensions.CollectionsExtensions;
 
-namespace aDevLibStandard
+namespace aDevLib
 {
     public class Setting
     {

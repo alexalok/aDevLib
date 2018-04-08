@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace aDevLibStandard.Methods
+namespace aDevLib.Methods
 {
     public class RandomMethods
     {

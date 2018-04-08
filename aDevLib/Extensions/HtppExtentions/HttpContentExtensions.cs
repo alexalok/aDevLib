@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace aDevLibStandard.Extensions.HtppExtentions
+namespace aDevLib.Extensions.HtppExtentions
 {
     public static class HttpContentExtensions
     {

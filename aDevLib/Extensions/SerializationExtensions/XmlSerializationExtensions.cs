@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace aDevLibStandard.Extensions.SerializationExtensions
+namespace aDevLib.Extensions.SerializationExtensions
 {
     public static class XmlSerializationExtensions
     {

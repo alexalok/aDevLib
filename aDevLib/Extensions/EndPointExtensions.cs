@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class EndPointExtensions
     {

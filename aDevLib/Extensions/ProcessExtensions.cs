@@ -11,7 +11,7 @@ using TTC.Utils.Environment.Queries;
 using TTC.Utils.Environment.Services;
 #endif
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class ProcessExtensions
     {
@@ -93,5 +93,5 @@ namespace aDevLibStandard.Extensions
             return query.ExecutablePath;
         }
 #endif
-        }
     }
+}

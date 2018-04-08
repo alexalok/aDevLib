@@ -1,6 +1,6 @@
 ﻿using System.Timers;
 
-namespace aDevLibStandard.Extensions
+namespace aDevLib.Extensions
 {
     public static class TimerExtensions
     {
