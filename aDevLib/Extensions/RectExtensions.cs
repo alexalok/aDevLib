@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace aDevLib.Extensions
+namespace aDevLibStandard.Extensions
 {
     public static class RectangleExtensions
     {

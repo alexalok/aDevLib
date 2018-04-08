@@ -1,15 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+#if NET462
+using System.Linq;
 using TTC.Utils.Environment.Entities;
 using TTC.Utils.Environment.Queries;
 using TTC.Utils.Environment.Services;
+#endif
 
-namespace aDevLib.Extensions
+namespace aDevLibStandard.Extensions
 {
     public static class ProcessExtensions
     {
@@ -22,9 +24,18 @@ namespace aDevLib.Extensions
         /// <exception cref="InvalidOperationException">Throws if the process have already exited</exception>
         /// <exception cref="Win32Exception"></exception>
         public static Task WaitForExitAsync(this Process process,
-            CancellationToken cancellationToken = default(CancellationToken)) =>
-            aDevLibStandard.Extensions.ProcessExtensions.WaitForExitAsync(process, cancellationToken);
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var tcs = new TaskCompletionSource<object>();
+            process.EnableRaisingEvents = true;
+            process.Exited += (sender, args) => tcs.TrySetResult(null);
+            if (cancellationToken != default(CancellationToken))
+                cancellationToken.Register(() => tcs.TrySetCanceled());
 
+            return tcs.Task;
+        }
+
+#if NET462
         [CanBeNull]
         [UsedImplicitly]
         public static string GetCommandLine(this Process process, bool tryRemoveExePath = false)
@@ -81,5 +92,6 @@ namespace aDevLib.Extensions
             var query = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
             return query.ExecutablePath;
         }
+#endif
+        }
     }
-}
