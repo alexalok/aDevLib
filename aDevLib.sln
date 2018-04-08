@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlAgilityExtended", "Html
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTC.Utils.Environment", "..\VMDetect\TTC.Utils.Environment\TTC.Utils.Environment.csproj", "{B32041A6-563B-46A3-89D3-343C39849B7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseSimulatorExtended", "MouseSimulatorExtended\MouseSimulatorExtended.csproj", "{C46D299A-163C-4EF6-92B0-C2E41A34038C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{B32041A6-563B-46A3-89D3-343C39849B7E}.Release|x64.Build.0 = Release|x64
 		{B32041A6-563B-46A3-89D3-343C39849B7E}.Release|x86.ActiveCfg = Release|x86
 		{B32041A6-563B-46A3-89D3-343C39849B7E}.Release|x86.Build.0 = Release|x86
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x64.Build.0 = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x86.Build.0 = Debug|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x64.ActiveCfg = Release|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x64.Build.0 = Release|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

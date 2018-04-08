@@ -57,7 +57,7 @@
       <Name>TTC.Utils.Environment</Name>
     </ProjectReference>
     <ProjectReference Include="..\aDevLibStandard\aDevLibStandard.csproj">
-      <Project>{3cf7fc5d-22a9-4eb6-8ba6-4d899973d89c}</Project>
+      <Project>{dd64ede8-505e-4925-9787-2fbb978b9fe2}</Project>
       <Name>aDevLibStandard</Name>
     </ProjectReference>
   </ItemGroup>
