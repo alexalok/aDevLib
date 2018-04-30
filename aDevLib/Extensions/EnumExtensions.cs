@@ -62,10 +62,7 @@ namespace aDevLib.Extensions
 
         public static string GetDescription(this Enum enumMember)
         {
-            return enumMember.GetType().GetMember(enumMember.ToString())
-                .First()
-                .GetCustomAttribute<DescriptionAttribute>()
-                .Description;
+            return enumMember.GetType().GetMember(enumMember.ToString()).First().GetCustomAttribute<DescriptionAttribute>().Description;
         }
 
         public static IEnumerable<T> GetFlags<T>(this T type)
@@ -74,6 +71,11 @@ namespace aDevLib.Extensions
                 throw new ArgumentException($"{nameof(T)} must be an {nameof(Enum)} type");
 
             return type.GetType().GetEnumValues().Cast<T>().Where(v => (type as Enum).HasFlag(v as Enum));
+        }
+
+        public static string GetFullName(this Enum myEnum)
+        {
+            return $"{myEnum.GetType().Name}.{myEnum.ToString()}";
         }
     }
 }
