@@ -9,6 +9,7 @@ using System.Linq;
 using TTC.Utils.Environment.Entities;
 using TTC.Utils.Environment.Queries;
 using TTC.Utils.Environment.Services;
+
 #endif
 
 namespace aDevLib.Extensions
@@ -19,19 +20,19 @@ namespace aDevLib.Extensions
         /// 
         /// </summary>
         /// <param name="process"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="timeout"></param>
         /// <returns></returns>
-        /// <exception cref="InvalidOperationException">Throws if the process have already exited</exception>
+        /// <exception cref="InvalidOperationException">Throws if the process has already exited</exception>
         /// <exception cref="Win32Exception"></exception>
+        /// <exception cref="TaskCanceledException"></exception>
         public static Task WaitForExitAsync(this Process process,
-            CancellationToken cancellationToken = default(CancellationToken))
+            TimeSpan timeout = default)
         {
+            var cts = timeout == default ? null : new CancellationTokenSource(timeout);
             var tcs = new TaskCompletionSource<object>();
             process.EnableRaisingEvents = true;
             process.Exited += (sender, args) => tcs.TrySetResult(null);
-            if (cancellationToken != default(CancellationToken))
-                cancellationToken.Register(() => tcs.TrySetCanceled());
-
+            cts?.Token.Register(() => tcs.TrySetCanceled());
             return tcs.Task;
         }
 
@@ -50,10 +51,12 @@ namespace aDevLib.Extensions
             {
                 return null;
             }
+
             string cmdLine = query?.CommandLine;
             if (string.IsNullOrEmpty(cmdLine)) //probs not authorized
                 return null;
-            if (!tryRemoveExePath) return cmdLine;
+            if (!tryRemoveExePath)
+                return cmdLine;
 
             //"D:\Programs\Notepad++\notepad++.exe"  
             var splitResult = cmdLine.Trim().Split(new[] {".exe"}, StringSplitOptions.RemoveEmptyEntries);
