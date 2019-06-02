@@ -1,4 +1,8 @@
-﻿namespace aDevLib.Extensions.CollectionsExtensions
+﻿using System;
+using System.Linq;
+using JetBrains.Annotations;
+
+namespace aDevLib.Extensions.CollectionsExtensions
 {
     public static class ArrayExtensions
     {
@@ -11,6 +15,22 @@
             }
             element = default(T);
             return false;
+        }
+
+        [Pure]
+        public static T[] AppendArray<T>(this T[] array1, T[] array2)
+        {
+            var newArray = new T[array1.Length + array2.Length];
+            Array.Copy(array1, newArray, array1.Length);
+            Array.Copy(array2, 0,        newArray, array1.Length, array2.Length);
+            return newArray;
+        }
+
+        public static Tuple<T[], T[]> SplitArray<T>(this T[] array, int index)
+        {
+            var first  = array.Take(index).ToArray();
+            var second = array.Skip(index).ToArray();
+            return Tuple.Create(first, second);
         }
     }
 }

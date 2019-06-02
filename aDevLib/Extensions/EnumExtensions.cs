@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace aDevLib.Extensions
 {
+    [Obfuscation(Exclude = true, ApplyToMembers = true)]
     public static class EnumExtensions
     {
         public static bool Has<T>(this Enum type, T value)

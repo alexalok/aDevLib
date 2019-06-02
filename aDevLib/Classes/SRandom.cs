@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace aDevLib
+namespace aDevLib.Classes
 {
     public static class SRandom
     {
@@ -44,6 +44,13 @@ namespace aDevLib
         {
             lock (RandomInstance)
                 return rangeMin + (rangeMax - rangeMin) * NextDouble();
+        }
+
+        /// <inheritdoc cref="Random.NextBytes"/>
+        public static void NextBytes(byte[] array)
+        {
+            lock (RandomInstance)
+                RandomInstance.NextBytes(array);
         }
     }
 }

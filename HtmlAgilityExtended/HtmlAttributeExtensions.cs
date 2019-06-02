@@ -16,6 +16,11 @@ namespace HtmlAgilityExtended
             return Convert.ToInt32(attribute.Value);
         }
 
+        public static uint UIntValue(this HtmlAttribute attribute)
+        {
+            return Convert.ToUInt32(attribute.Value);
+        }
+
         public static bool TryIntValue(this HtmlAttribute attribute, out int value)
         {
             return int.TryParse(attribute.Value, out value);
@@ -34,6 +39,18 @@ namespace HtmlAgilityExtended
         public static float FloatValue(this HtmlAttribute attribute)
         {
             return Convert.ToSingle(attribute.Value, CultureInfo.InvariantCulture);
+        }
+
+        public static double DoubleValue(this HtmlAttribute attribute)
+        {
+            return Convert.ToDouble(attribute.Value, CultureInfo.InvariantCulture);
+        }
+
+        public static TEnum EnumValue<TEnum>(this HtmlAttribute attribute) where TEnum : Enum
+        {
+            if (attribute.TryIntValue(out int intValue))
+                return (TEnum) (object) intValue;
+            return (TEnum) Enum.Parse(typeof(TEnum), attribute.Value, true);
         }
     }
 }

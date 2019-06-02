@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Reflection;
 
 namespace aDevLib.Methods
 {
+    [Obfuscation(Exclude = true, ApplyToMembers = true)]
     public static class GenericsArithmeticsMethods<T>
     {
         public static T Add(params T[] members)

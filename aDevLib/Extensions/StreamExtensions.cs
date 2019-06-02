@@ -12,7 +12,7 @@ namespace aDevLib.Extensions
             var offset = 0;
             while (offset < count)
             {
-                var read = await stream.ReadAsync(buffer, offset, count - offset);
+                int read = await stream.ReadAsync(buffer, offset, count - offset);
                 if (read == 0)
                     throw new EndOfStreamException();
                 offset += read;

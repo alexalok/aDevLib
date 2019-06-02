@@ -1,11 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+
 #if NET462
+
 using System.Linq;
+using System.Management;
 using TTC.Utils.Environment.Entities;
 using TTC.Utils.Environment.Queries;
 using TTC.Utils.Environment.Services;
@@ -26,30 +30,34 @@ namespace aDevLib.Extensions
         /// <exception cref="Win32Exception"></exception>
         /// <exception cref="TaskCanceledException"></exception>
         public static Task WaitForExitAsync(this Process process,
-            TimeSpan timeout = default)
+                                            TimeSpan     timeout = default)
         {
             var cts = timeout == default ? null : new CancellationTokenSource(timeout);
             var tcs = new TaskCompletionSource<object>();
-            process.EnableRaisingEvents = true;
-            process.Exited += (sender, args) => tcs.TrySetResult(null);
+            process.EnableRaisingEvents =  true;
+            process.Exited              += (sender, args) => tcs.TrySetResult(null);
             cts?.Token.Register(() => tcs.TrySetCanceled());
             return tcs.Task;
         }
 
 #if NET462
         [CanBeNull]
-        [UsedImplicitly]
         public static string GetCommandLine(this Process process, bool tryRemoveExePath = false)
         {
-            var wmiService = new WmiService();
+            var        wmiService = new WmiService();
             WmiProcess query;
             try
             {
                 query = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
             }
-            catch (Win32Exception)
+            catch (Exception ex)
             {
-                return null;
+                if (ex is Win32Exception ||
+                    ex is ManagementException ||
+                    ex is COMException ||
+                    ex is UnauthorizedAccessException)
+                    return null;
+                throw;
             }
 
             string cmdLine = query?.CommandLine;
@@ -74,12 +82,11 @@ namespace aDevLib.Extensions
             return string.Join(".exe", splitResult.Skip(1));
         }
 
-        [UsedImplicitly]
         [CanBeNull]
         public static Process GetParent(this Process process)
         {
-            var wmiService = new WmiService();
-            var query = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
+            var wmiService   = new WmiService();
+            var query        = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
             int parentProcId = query.ParentProcessId;
             if (parentProcId == 0)
                 return null;
@@ -87,12 +94,11 @@ namespace aDevLib.Extensions
             return parentProcess;
         }
 
-        [UsedImplicitly]
         [CanBeNull]
         public static string GetProcessPath(this Process process)
         {
             var wmiService = new WmiService();
-            var query = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
+            var query      = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
             return query.ExecutablePath;
         }
 #endif

@@ -33,5 +33,22 @@ namespace aDevLib.Extensions
                 throw new TaskCanceledException("The operation has timed out.");
             }
         }
+
+        public static async void RunNonAwaitable(this Task task, Action<Exception> onExceptionDelegate)
+        {
+            try
+            {
+                await task;
+            }
+            catch (Exception ex)
+            {
+                onExceptionDelegate(ex);
+            }
+        }
+
+        public static void RunNonAwaitable(this Task task)
+        {
+            RunNonAwaitable(task, e => { });
+        }
     }
 }

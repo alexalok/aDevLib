@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using aDevLib.Classes;
 
 namespace aDevLib.Extensions.CollectionsExtensions
 {
@@ -11,7 +12,7 @@ namespace aDevLib.Extensions.CollectionsExtensions
         /// <typeparam name="T"></typeparam>
         /// <param name="iEnum"></param>
         /// <returns></returns>
-        public static T GetRandom<T>(this IEnumerable<T> iEnum) => iEnum.ElementAt(SRandom.Next(0, iEnum.Count()));
+        public static T GetRandom<T>(this IReadOnlyCollection<T> iEnum) => iEnum.ElementAt(SRandom.Next(0, iEnum.Count));
 
         public static bool TryGetElement<T>(this IEnumerable<T> enumerable, int index, out T element)
         {
