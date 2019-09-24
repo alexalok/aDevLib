@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aDevLib", "aDevLib\aDevLib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aDevLibWPF", "aDevLibWPF\aDevLibWPF.csproj", "{F1FDECFF-5346-40C2-A418-4A63D65AC01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseSimulatorExtended", "MouseSimulatorExtended\MouseSimulatorExtended.csproj", "{C46D299A-163C-4EF6-92B0-C2E41A34038C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlAgilityExtended", "HtmlAgilityExtended\HtmlAgilityExtended.csproj", "{2BE7A0E0-FB8B-4D53-9CD9-B4CDF52E3627}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlAgilityExtended", "HtmlAgilityExtended\HtmlAgilityExtended.csproj", "{2BE7A0E0-FB8B-4D53-9CD9-B4CDF52E3627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,18 +43,6 @@ Global
 		{F1FDECFF-5346-40C2-A418-4A63D65AC01E}.Release|x64.Build.0 = Release|Any CPU
 		{F1FDECFF-5346-40C2-A418-4A63D65AC01E}.Release|x86.ActiveCfg = Release|Any CPU
 		{F1FDECFF-5346-40C2-A418-4A63D65AC01E}.Release|x86.Build.0 = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x64.Build.0 = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Debug|x86.Build.0 = Debug|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x64.ActiveCfg = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x64.Build.0 = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x86.ActiveCfg = Release|Any CPU
-		{C46D299A-163C-4EF6-92B0-C2E41A34038C}.Release|x86.Build.0 = Release|Any CPU
 		{2BE7A0E0-FB8B-4D53-9CD9-B4CDF52E3627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BE7A0E0-FB8B-4D53-9CD9-B4CDF52E3627}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BE7A0E0-FB8B-4D53-9CD9-B4CDF52E3627}.Debug|x64.ActiveCfg = Debug|Any CPU
