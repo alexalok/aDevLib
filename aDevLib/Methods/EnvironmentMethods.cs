@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Security.Principal;
+using Microsoft.Win32;
+
 #if NET462
 using System.Security.Principal;
 using Microsoft.Win32;
@@ -9,24 +12,31 @@ namespace aDevLib.Methods
 {
     public class EnvironmentMethods
     {
-        public static bool IsUnix()
+        public static bool IsUnix() => Environment.OSVersion.Platform == PlatformID.Unix;
+        public static bool IsWindows() => Environment.OSVersion.Platform == PlatformID.Win32NT;
+
+        /// <summary>
+        /// Checks current OS and throws <see cref="PlatformNotSupportedException"/> if it is not PlatformID.Win32NT.
+        /// </summary>
+        /// <exception cref="PlatformNotSupportedException">Thrown if current OS is not Win32NT</exception>
+        public static void IsWindowsGuard()
         {
-            var p = (int) Environment.OSVersion.Platform;
-            return (p == 4) || (p == 6) || (p == 128);
+            if (!IsWindows())
+                throw new PlatformNotSupportedException();
         }
 
-#if NET462
-
+        /// <exception cref="PlatformNotSupportedException">Thrown if current OS is not Win32NT</exception>
         public static bool IsAdministrator =>
             new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
 
+        /// <exception cref="PlatformNotSupportedException">Thrown if current OS is not Win32NT</exception>
         public static NETFrameworkVersion GetNETFrameworkVersion()
         {
             return Get45PlusFromRegistry();
         }
 
         // Checking the version using >= will enable forward compatibility.
-        private static NETFrameworkVersion CheckFor45PlusVersion(int releaseKey)
+        static NETFrameworkVersion CheckFor45PlusVersion(int releaseKey)
         {
             if (releaseKey >= 461808)
                 return NETFrameworkVersion.v472orNewer;
@@ -51,21 +61,19 @@ namespace aDevLib.Methods
             return NETFrameworkVersion.NotDetected;
         }
 
-        private static NETFrameworkVersion Get45PlusFromRegistry()
+        static NETFrameworkVersion Get45PlusFromRegistry()
         {
             const string subkey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
 
             using (var ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(subkey))
             {
                 return ndpKey?.GetValue("Release") != null ?
-                    CheckFor45PlusVersion((int) ndpKey.GetValue("Release")) :
+                    CheckFor45PlusVersion((int)ndpKey.GetValue("Release")) :
                     NETFrameworkVersion.NotDetected;
             }
         }
-#endif
     }
 
-#if NET462
     public enum NETFrameworkVersion
     {
         NotDetected,
@@ -79,5 +87,4 @@ namespace aDevLib.Methods
         v471,
         v472orNewer,
     }
-#endif
 }

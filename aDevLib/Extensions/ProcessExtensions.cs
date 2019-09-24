@@ -5,16 +5,12 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-
-#if NET462
-
 using System.Linq;
 using System.Management;
+using aDevLib.Methods;
 using TTC.Utils.Environment.Entities;
 using TTC.Utils.Environment.Queries;
 using TTC.Utils.Environment.Services;
-
-#endif
 
 namespace aDevLib.Extensions
 {
@@ -40,10 +36,13 @@ namespace aDevLib.Extensions
             return tcs.Task;
         }
 
-#if NET462
+        /// <exception cref="PlatformNotSupportedException">Thrown if current OS is not Win32NT</exception>
         [CanBeNull]
         public static string GetCommandLine(this Process process, bool tryRemoveExePath = false)
         {
+            if(!EnvironmentMethods.IsWindows())
+                throw new PlatformNotSupportedException();
+
             var        wmiService = new WmiService();
             WmiProcess query;
             try
@@ -101,6 +100,5 @@ namespace aDevLib.Extensions
             var query      = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
             return query.ExecutablePath;
         }
-#endif
     }
 }
