@@ -6,11 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using System.Linq;
-using System.Management;
-using aDevLib.Methods;
-using TTC.Utils.Environment.Entities;
-using TTC.Utils.Environment.Queries;
-using TTC.Utils.Environment.Services;
 
 namespace aDevLib.Extensions
 {
@@ -34,71 +29,6 @@ namespace aDevLib.Extensions
             process.Exited              += (sender, args) => tcs.TrySetResult(null);
             cts?.Token.Register(() => tcs.TrySetCanceled());
             return tcs.Task;
-        }
-
-        /// <exception cref="PlatformNotSupportedException">Thrown if current OS is not Win32NT</exception>
-        [CanBeNull]
-        public static string GetCommandLine(this Process process, bool tryRemoveExePath = false)
-        {
-            if(!EnvironmentMethods.IsWindows())
-                throw new PlatformNotSupportedException();
-
-            var        wmiService = new WmiService();
-            WmiProcess query;
-            try
-            {
-                query = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
-            }
-            catch (Exception ex)
-            {
-                if (ex is Win32Exception ||
-                    ex is ManagementException ||
-                    ex is COMException ||
-                    ex is UnauthorizedAccessException)
-                    return null;
-                throw;
-            }
-
-            string cmdLine = query?.CommandLine;
-            if (string.IsNullOrEmpty(cmdLine)) //probs not authorized
-                return null;
-            if (!tryRemoveExePath)
-                return cmdLine;
-
-            //"D:\Programs\Notepad++\notepad++.exe"  
-            var splitResult = cmdLine.Trim().Split(new[] {".exe"}, StringSplitOptions.RemoveEmptyEntries);
-            if (splitResult.Length <= 1) //only path is available
-                return string.Empty;
-
-            if (splitResult[1][0] == '\"')
-            {
-                if (splitResult[1].Length > 1)
-                    splitResult[1] = new string(splitResult[1].Skip(1).ToArray());
-                else //there is nothing in cmdline part
-                    return string.Empty;
-            }
-
-            return string.Join(".exe", splitResult.Skip(1));
-        }
-
-        [CanBeNull]
-        public static Process GetParent(this Process process)
-        {
-            var wmiService   = new WmiService();
-            var query        = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
-            int parentProcId = query.ParentProcessId;
-            if (parentProcId == 0)
-                return null;
-            var parentProcess = Process.GetProcessById(parentProcId);
-            return parentProcess;
-        }
-
-        [CanBeNull]
-        public static string GetProcessPath(this Process process)
-        {
-            var wmiService = new WmiService();
-            var query      = wmiService.QueryFirst<WmiProcess>(new WmiProcessQuery(process));
-            return query.ExecutablePath;
         }
     }
 }
