@@ -36,6 +36,16 @@ namespace HtmlAgilityExtended
             return long.TryParse(attribute.Value, out value);
         }
 
+        public static ulong ULongValue(this HtmlAttribute attribute)
+        {
+            return Convert.ToUInt64(attribute.Value);
+        }
+
+        public static bool TryULongValue(this HtmlAttribute attribute, out ulong value)
+        {
+            return ulong.TryParse(attribute.Value, out value);
+        }
+
         public static float FloatValue(this HtmlAttribute attribute)
         {
             return Convert.ToSingle(attribute.Value, CultureInfo.InvariantCulture);
