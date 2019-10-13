@@ -79,5 +79,11 @@ namespace aDevLib.Extensions
         {
             return new[] {str};
         }
+
+        public static string ToUnderscoreCase(this string str, bool toLower = true)
+        {
+            var res = string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString()));
+            return toLower ? res.ToLowerInvariant() : res;
+        }
     }
 }
