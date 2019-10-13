@@ -7,21 +7,30 @@ namespace aDevLib.Methods
     {
         public static bool OpenUrlInDefaultBrowser(string link)
         {
+            EnvironmentMethods.IsWindowsGuard();
+            
+            var startInfo = new ProcessStartInfo(link)
+            {
+                UseShellExecute = true
+            };
             try
             {
-                Process.Start(link);
+                Process.Start(startInfo);
             }
             catch (Exception)
             {
                 try
                 {
-                    Process.Start("IExplore.exe", link);
+                    startInfo.FileName = "IExplore.exe";
+                    startInfo.Arguments = link;
+                    Process.Start(startInfo);
                 }
                 catch (Exception)
                 {
                     try
                     {
-                        Process.Start("explorer.exe", link);
+                        startInfo.FileName = "explorer.exe";
+                        Process.Start(startInfo);
                     }
                     catch (Exception)
                     {
