@@ -26,7 +26,7 @@ namespace aDevLib.Extensions
             var cts = timeout == default ? null : new CancellationTokenSource(timeout);
             var tcs = new TaskCompletionSource<object>();
             process.EnableRaisingEvents =  true;
-            process.Exited              += (sender, args) => tcs.TrySetResult(null);
+            process.Exited              += (sender, args) => tcs.TrySetResult(null!);
             cts?.Token.Register(() => tcs.TrySetCanceled());
             return tcs.Task;
         }

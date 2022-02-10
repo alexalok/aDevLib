@@ -11,7 +11,7 @@ namespace aDevLib.Extensions
             return uri.IsAbsoluteUri ? uri.PathAndQuery : uri.OriginalString;
         }
 
-        public static string ToAbsolute(this Uri uri, string baseUrl)
+        public static string? ToAbsolute(this Uri uri, string baseUrl)
         {
             // Null-checks
 
@@ -20,7 +20,7 @@ namespace aDevLib.Extensions
             return uri.ToAbsolute(baseUri);
         }
 
-        public static string ToAbsolute(this Uri uri, Uri baseUri)
+        public static string? ToAbsolute(this Uri uri, Uri baseUri)
         {
             // Null-checks
 

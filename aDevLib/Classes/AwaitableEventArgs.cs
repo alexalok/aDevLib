@@ -6,6 +6,6 @@ namespace aDevLib.Classes
     {
         readonly TaskCompletionSource<object> _tcs = new TaskCompletionSource<object>();
         public   Task                         Task           => _tcs.Task;
-        public   void                         SetCompleted() => _tcs.SetResult(null);
+        public   void                         SetCompleted() => _tcs.SetResult(null!);
     }
 }

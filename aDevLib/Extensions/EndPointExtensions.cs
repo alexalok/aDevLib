@@ -6,7 +6,7 @@ namespace aDevLib.Extensions
     {
         public static IPEndPoint GetIPEndPoint(this EndPoint endPoint)
         {
-            return endPoint as IPEndPoint;
+            return (IPEndPoint) endPoint;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace aDevLib.Extensions.HtppExtentions
             {
                 throw new InvalidOperationException($"File {pathname} already exists.");
             }
-            FileStream fileStream = null;
+            FileStream? fileStream = null;
             try
             {
                 fileStream = new FileStream(pathname, FileMode.Create, FileAccess.Write, FileShare.None);

@@ -9,7 +9,7 @@ namespace aDevLib.Extensions
     [Obfuscation(Exclude = true, ApplyToMembers = true)]
     public static class EnumExtensions
     {
-        public static bool Has<T>(this Enum type, T value)
+        public static bool Has<T>(this Enum type, T value) where T : Enum
         {
             try
             {
@@ -21,7 +21,7 @@ namespace aDevLib.Extensions
             }
         }
 
-        public static bool Is<T>(this Enum type, T value)
+        public static bool Is<T>(this Enum type, T value) where T : Enum
         {
             try
             {
@@ -34,7 +34,7 @@ namespace aDevLib.Extensions
         }
 
 
-        public static T Add<T>(this Enum type, T value)
+        public static T Add<T>(this Enum type, T value) where T : Enum
         {
             try
             {
@@ -48,7 +48,7 @@ namespace aDevLib.Extensions
         }
 
 
-        public static T Remove<T>(this Enum type, T value)
+        public static T Remove<T>(this Enum type, T value) where T : Enum
         {
             try
             {
@@ -66,12 +66,9 @@ namespace aDevLib.Extensions
             return enumMember.GetType().GetMember(enumMember.ToString()).First().GetCustomAttribute<DescriptionAttribute>().Description;
         }
 
-        public static IEnumerable<T> GetFlags<T>(this T type)
+        public static IEnumerable<T> GetFlags<T>(this T type) where T : Enum
         {
-            if (!typeof(T).IsEnum)
-                throw new ArgumentException($"{nameof(T)} must be an {nameof(Enum)} type");
-
-            return type.GetType().GetEnumValues().Cast<T>().Where(v => (type as Enum).HasFlag(v as Enum));
+            return type.GetType().GetEnumValues().Cast<T>().Where(v => type.HasFlag(v));
         }
 
         public static string GetFullName(this Enum myEnum)

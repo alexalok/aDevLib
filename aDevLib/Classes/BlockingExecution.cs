@@ -41,7 +41,7 @@ namespace aDevLib.Classes
 
         class DisposableObject : IDisposable
         {
-            public event EventHandler ObjectDisposed;
+            public event EventHandler ObjectDisposed = null!;
 
             public void Dispose()
             {

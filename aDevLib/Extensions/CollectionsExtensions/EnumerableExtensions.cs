@@ -14,7 +14,7 @@ namespace aDevLib.Extensions.CollectionsExtensions
         /// <returns></returns>
         public static T GetRandom<T>(this IReadOnlyCollection<T> iEnum) => iEnum.ElementAt(SRandom.Next(0, iEnum.Count));
 
-        public static bool TryGetElement<T>(this IEnumerable<T> enumerable, int index, out T element)
+        public static bool TryGetElement<T>(this IEnumerable<T> enumerable, int index, out T? element)
         {
             var enumAsArray = enumerable as T[] ?? enumerable.ToArray();
             if (index < enumAsArray.Length)
@@ -22,7 +22,7 @@ namespace aDevLib.Extensions.CollectionsExtensions
                 element = enumAsArray.ElementAt(index);
                 return true;
             }
-            element = default(T);
+            element = default;
             return false;
         }
     }
