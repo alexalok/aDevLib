@@ -5,12 +5,18 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Media;
 
 namespace aDevLib.Extensions
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="string"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length">If positive, length from the <paramref name="startIndex"/>. If negative, length from the end.</param>
+        /// <returns></returns>
         public static string SmartSubstring(this string @string, int startIndex, int length)
         {
             return length >= 0 ?
@@ -62,7 +68,7 @@ namespace aDevLib.Extensions
         public static string NewLineConcatenated(this IEnumerable<string> multiLineString) =>
             string.Join(Environment.NewLine, multiLineString);
 
-        public static string GetMd5(this string input, bool upperCase = true)
+        public static string GetMD5(this string input, bool upperCase = true)
         {
             var    md5        = MD5.Create();
             var    inputBytes = Encoding.ASCII.GetBytes(input);
@@ -84,6 +90,16 @@ namespace aDevLib.Extensions
         {
             var res = string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString()));
             return toLower ? res.ToLowerInvariant() : res;
+        }
+
+        public static bool IsNullOrWhiteSpace(this string str)
+        {
+            return string.IsNullOrWhiteSpace(str);
+        }
+        
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
         }
     }
 }
